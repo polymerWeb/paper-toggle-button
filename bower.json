@@ -3,6 +3,7 @@
   "private": true,
   "dependencies": {
     "font-roboto": "Polymer/font-roboto#master",
-    "paper-radio-button": "Polymer/paper-radio-button#master"
+    "polymer": "Polymer/polymer#master",
+    "paper-ripple": "Polymer/paper-ripple#master"
   }
 }
