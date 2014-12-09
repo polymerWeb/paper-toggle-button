@@ -3,7 +3,6 @@
   "private": true,
   "dependencies": {
     "font-roboto": "Polymer/font-roboto#master",
-    "polymer": "Polymer/polymer#master",
-    "paper-ripple": "Polymer/paper-ripple#master"
+    "polymer": "Polymer/polymer#0.8-preview"
   }
 }

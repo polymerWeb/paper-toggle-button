@@ -57,30 +57,30 @@ To change the toggle bar and toggle button colors separately:
 -->
 
 <link rel="import" href="../polymer/polymer.html">
-<link rel="import" href="../paper-ripple/paper-ripple.html">
-<link rel="import" href="../core-a11y-keys/core-a11y-keys.html">
+<link rel="import" href="../polymer/data.html">
+<link rel="import" href="../polymer-gestures/polymer-gestures.html">
+<link rel="import" href="../x-elements/paper-ripple.html">
+<!-- <link rel="import" href="../core-a11y-keys/core-a11y-keys.html"> -->
 
-<polymer-element name="paper-toggle-button" attributes="checked disabled" role="button" aria-pressed="false" tabindex="0">
+<link rel="stylesheet" href="paper-toggle-button.css">
+
 <template>
 
-  <link rel="stylesheet" href="paper-toggle-button.css">
-
-  <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{tap}}"></core-a11y-keys>
-
-  <div id="toggleContainer" checked?="{{checked}}" disabled?="{{disabled}}">
+  <!-- TODO(keanu): Port a11y keyboard shortcuts. -->
+  <!-- <core-a11y-keys target="{{}}" keys="space" on-keys-pressed="{{tap}}"></core-a11y-keys> -->
   
-    <div id="toggleBar" class="toggle toggle-bar"></div>
+  <div id="toggleBar" class="toggle toggle-bar"></div>
 
-    <div id="toggleButton" class="toggle toggle-button">
-      <paper-ripple id="ink" class="toggle-ink circle"></paper-ripple>
-    </div>
-
+  <div id="toggleButton" class="toggle toggle-button">
+    <paper-ripple id="ink" class="toggle-ink circle"></paper-ripple>
   </div>
 
 </template>
 <script>
 
-  Polymer('paper-toggle-button', {
+  Polymer({
+
+    name: 'paper-toggle-button',
     
     /**
      * Fired when the checked state changes due to user interaction.
@@ -94,32 +94,41 @@ To change the toggle bar and toggle button colors separately:
      * @event core-change
      */
 
-    /**
-     * Gets or sets the state, `true` is checked and `false` is unchecked.
-     *
-     * @attribute checked
-     * @type boolean
-     * @default false
-     */
-    checked: false,
+    published: {
+      /**
+       * Gets or sets the state, `true` is checked and `false` is unchecked.
+       *
+       * @attribute checked
+       * @type boolean
+       * @default false
+       */
+      checked: Boolean,
 
-    /**
-     * If true, the toggle button is disabled.  A disabled toggle button cannot
-     * be tapped or dragged to change the checked state.
-     *
-     * @attribute disabled
-     * @type boolean
-     * @default false
-     */
-    disabled: false,
+      /**
+       * If true, the toggle button is disabled.  A disabled toggle button cannot
+       * be tapped or dragged to change the checked state.
+       *
+       * @attribute disabled
+       * @type boolean
+       * @default false
+       */
+      disabled: Boolean
+    },
 
-    eventDelegates: {
+    listeners: {
       down: 'downAction',
       up: 'upAction',
-      tap: 'tap',
-      trackstart: 'trackStart',
-      trackx: 'trackx',
-      trackend: 'trackEnd'
+      // TODO(keanu): change to tap once gestures are updated for Polymer 0.8.
+      click: 'tap',
+      // TODO(keanu): include once gestures are updated for Polymer 0.8.
+      // trackstart: 'trackStart',
+      // trackx: 'trackx',
+      // trackend: 'trackEnd'
+    },
+
+    bind: {
+      checked: 'checkedChanged',
+      disabled: 'disabledChanged'
     },
 
     downAction: function(e) {
@@ -175,12 +184,28 @@ To change the toggle bar and toggle button colors separately:
       }
     },
     
-    checkedChanged: function() {
+    checkedChanged: function(newVal, oldVal) {
+      // Update the checked attribute only if checkedChanged was not triggered
+      // by a change of the checked attribute.
+      if (this.checked && !this.hasAttribute('checked')) {
+        this.setAttribute('checked', '');
+      } else if (!this.checked && this.hasAttribute('checked')) {
+        this.removeAttribute('checked');
+      }
       this.setAttribute('aria-pressed', Boolean(this.checked));
       this.fire('core-change');
+    },
+
+    disabledChanged: function() {
+      // Update the disabled attribute only if disabledChanged was not triggered
+      // by a change of the disabled attribute.
+      if (this.disabled && !this.hasAttribute('disabled')) {
+        this.setAttribute('disabled', '');
+      } else if (!this.disabled && this.hasAttribute('disabled')) {
+        this.removeAttribute('disabled');
+      }
     }
 
   });
 
 </script>
-</polymer-element>

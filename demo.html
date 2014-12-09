@@ -21,7 +21,7 @@
   <link rel="import" href="paper-toggle-button.html">
   <link rel="import" href="../font-roboto/roboto.html">
   
-  <style shim-shadowdom>
+  <style>
   
     body {
       font-family: RobotoDraft, 'Helvetica Neue', Helvetica, Arial;
@@ -39,30 +39,30 @@
       width: 200px;
     }
 
-    paper-toggle-button.bluetooth::shadow [checked] .toggle-ink {
+    paper-toggle-button.bluetooth[checked] .toggle-ink {
       color: #4285f4;
     }
 
-    paper-toggle-button.bluetooth::shadow [checked] .toggle {
+    paper-toggle-button.bluetooth[checked] .toggle {
       background-color: #4285f4;
     }
     
-    paper-toggle-button.fun::shadow .toggle-ink {
+    paper-toggle-button.fun .toggle-ink {
       color: #009688;
     }
 
-    paper-toggle-button.fun::shadow .toggle-bar {
+    paper-toggle-button.fun .toggle-bar {
       background-color: #5677fc;
     }
 
-    paper-toggle-button.fun::shadow .toggle-button {
+    paper-toggle-button.fun .toggle-button {
       background-color: #9c27b0;
     }
     
   </style>
   
 </head>
-<body unresolved>
+<body>
 
   <section>
   

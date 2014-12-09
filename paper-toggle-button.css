@@ -7,50 +7,50 @@ Code distributed by Google as part of the polymer project is also
 subject to an additional IP rights grant found at http://polymer.github.io/PATENTS.txt
 */
 
-:host {
+paper-toggle-button {
   display: inline-block;
 }
 
-:host(:focus) {
+paper-toggle-button:focus {
   outline: none;
 }
 
 /* Class selectors can be overridden by users. */
 
-.toggle-bar {
+paper-toggle-button .toggle-bar {
   background-color: #000000;
 }
 
-.toggle-button {
+paper-toggle-button .toggle-button {
   background-color: #f1f1f1;
 }
 
-[checked] .toggle {
+paper-toggle-button[checked] .toggle {
   background-color: #0f9d58;
 }
 
-.toggle-ink {
+paper-toggle-button .toggle-ink {
   color: #bbb;
 }
 
-[checked] .toggle-ink {
+paper-toggle-button[checked] .toggle-ink {
   color: #0f9d58;
 }
 
 /* ID selectors should not be overriden by users. */
 
-#toggleContainer {
+paper-toggle-button {
   position: relative;
   width: 36px;
   height: 14px;
 }
 
-#toggleContainer[disabled] {
+paper-toggle-button[disabled] {
   opacity: 0.3;
   pointer-events: none;
 }
 
-#toggleBar {
+paper-toggle-button #toggleBar {
   position: absolute;
   height: 100%;
   width: 100%;
@@ -60,11 +60,11 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   transition: background-color linear .08s;
 }
 
-[checked] #toggleBar {
+paper-toggle-button[checked] #toggleBar {
   opacity: 0.5;
 }
 
-#toggleButton {
+paper-toggle-button #toggleButton {
   position: absolute;
   top: -3px;
   height: 20px;
@@ -75,17 +75,17 @@ subject to an additional IP rights grant found at http://polymer.github.io/PATEN
   transition: transform linear .08s, background-color linear .08s;
 }
 
-#toggleButton.dragging {
+paper-toggle-button #toggleButton.dragging {
   -webkit-transition: none;
   transition: none;
 }
 
-[checked] #toggleButton {
+paper-toggle-button[checked] #toggleButton {
   -webkit-transform: translate(16px, 0);
   transform: translate(16px, 0);
 }
 
-#ink {
+paper-toggle-button #ink {
   position: absolute;
   top: -14px;
   left: -14px;
